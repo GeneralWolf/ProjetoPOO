@@ -1,14 +1,15 @@
 package com.company;
 
 abstract public class Tarefa {
+    protected String descritor;     //TODO para dar para diferenciar as tarefas e para depois ter algo para por na interface
     protected Data dataInicio;
     protected Data dataFim;
     protected double duracaoEstimada;
     protected double taxaExecucao;
-    //protected double taxaEsforco;     //TODO tecnicamente nao é necessário já que a taxa de esforço está definida nas subclasses
     protected Pessoa responsavel;
 
-    public Tarefa(Data dataInicio, Data dataFim, double duracaoEstimada, double taxaExecucao){
+    public Tarefa(String descritor, Data dataInicio, Data dataFim, double duracaoEstimada, double taxaExecucao){
+        this.descritor = descritor;
         this.dataInicio = dataInicio;
         this.dataFim = dataFim;
         this.duracaoEstimada = duracaoEstimada;
@@ -23,7 +24,7 @@ abstract public class Tarefa {
         this.responsavel = responsavel;
     }
 
-    public double setTaxaExacucao(double taxaExecucao){
+    public void setTaxaExacucao(double taxaExecucao){
         this.taxaExecucao = taxaExecucao;
     }
 
