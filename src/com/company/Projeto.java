@@ -1,5 +1,6 @@
 package com.company;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Projeto {
     private String nome;
@@ -9,6 +10,7 @@ public class Projeto {
     private int duracaoMeses;
     private ArrayList<Pessoa> participantes;
     private ArrayList<Tarefa> tarefas;
+    private boolean acabado = false;
 
     public Projeto(String nome, String acronimo, Data dataInicio, Data dataFim, int duracaoMeses){
         this.nome = nome;
@@ -19,7 +21,12 @@ public class Projeto {
     }
 
     public void associarPessoa(Pessoa pessoa){
+        if(!acabado) {
             participantes.add(pessoa);
+        }
+        else{
+            System.out.println("O projeto apenas está disponível para consulta");
+        }
     }
 
     public double taxaProgressao(){
@@ -32,8 +39,20 @@ public class Projeto {
         }
     }
 
-    public void adicionarTarefa(){
+    public void adicionarTarefa(String descritor, Data dataInicio, Data dataFim, double duracaoEstimada, double taxaExecucao){
+        if(!acabado) {
+            String opcao;
+            int opcaoN;
+            Scanner escolha = new Scanner(System.in);
+            System.out.println("Que tipo de tarefa?\n1.Desenvolvimento\n2.Design\n3.Documentação");
+            opcao = escolha.nextLine();
 
+
+            tarefas.add(new Tarefa(descritor, dataInicio, dataFim, duracaoEstimada, taxaExecucao));
+        }
+        else{
+            System.out.println("O projeto apenas está disponível para consulta");
+        }
     }
 
     public void apagarTarefa(){
@@ -80,11 +99,15 @@ public class Projeto {
     }
 
     public double custoTotal(){
-
+        double custo = 0;
+        for(int i = 0; i < participantes.size(); i++){
+            custo += participantes.get(i).getCusto();
+        }
+        return custo;
     }
 
     public void finalizarProjeto(){
-
+        this.acabado = true;
     }
 
 }
