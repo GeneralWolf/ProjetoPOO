@@ -11,6 +11,7 @@ public class Projeto {
     private ArrayList<Pessoa> participantes;
     private ArrayList<Tarefa> tarefas;
     private boolean acabado = false;
+    private Scanner escolha = new Scanner(System.in);
 
     public Projeto(String nome, String acronimo, Data dataInicio, Data dataFim, int duracaoMeses){
         this.nome = nome;
@@ -31,6 +32,12 @@ public class Projeto {
 
     public double taxaProgressao(){
         //TODO usa a percentagem completada de cada tarefa
+        double part = 1.0/tarefas.size();
+        double total = 0;
+        for(int i = 0; i < tarefas.size(); i++){
+            total += part * tarefas.get(i).getTaxaExecucao();
+        }
+        return total * 100;
     }
 
     public void printTarefas(){
@@ -41,22 +48,44 @@ public class Projeto {
 
     public void adicionarTarefa(String descritor, Data dataInicio, Data dataFim, double duracaoEstimada, double taxaExecucao){
         if(!acabado) {
-            String opcao;
-            int opcaoN;
-            Scanner escolha = new Scanner(System.in);
-            System.out.println("Que tipo de tarefa?\n1.Desenvolvimento\n2.Design\n3.Documentação");
-            opcao = escolha.nextLine();
+            String opcao;   //*isto
+            int opcaoN;     //*isto
+            System.out.println("Que tipo de tarefa?\n1.Desenvolvimento\n2.Design\n3.Documentação"); //TODO probs temporario já que probs vai ser implementado usando a interface grafica, mas para testing purposes está aqui**
+            opcao = escolha.nextLine(); //*isto
+            try {
+                opcaoN = Integer.parseInt(opcao);   //*isto
+                //TODO adicionar duferentes if's para o tipo de tarefa, já que tarefa é abstrata, mas até se fazer a interface probs nao vale a pena implementar completamente
+                tarefas.add(new Tarefa(descritor, dataInicio, dataFim, duracaoEstimada, taxaExecucao));
+            }
+            catch(NumberFormatException ex)
+            {
+                System.out.println("Escreva um número por favor");  //*isto
+            }
 
-
-            tarefas.add(new Tarefa(descritor, dataInicio, dataFim, duracaoEstimada, taxaExecucao));
         }
         else{
             System.out.println("O projeto apenas está disponível para consulta");
         }
     }
 
-    public void apagarTarefa(){
-
+    public void apagarTarefa() {
+        String opcao;   //*isto
+        int opcaoN;     //*isto
+        if (!acabado) {
+            printTarefas();
+            System.out.println("Escolha o número da tarefa a eliminar\n");  //*isto
+            opcao = escolha.nextLine(); //*isto
+            opcao = escolha.nextLine(); //*isto
+            try {
+                //TODO probs temporario já que probs vai ser implementado usando a interface grafica, mas para testing purposes está aqui**
+                opcaoN = Integer.parseInt(opcao);   //*isto
+                tarefas.remove(opcaoN);
+            } catch (NumberFormatException ex) {
+                System.out.println("Escreva um número por favor");  //*isto
+            }
+        } else {
+            System.out.println("O projeto apenas está disponível para consulta");
+        }
     }
 
     public void printTarefasNIniciadas(){
