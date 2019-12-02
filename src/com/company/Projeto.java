@@ -2,6 +2,8 @@ package com.company;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+//TODO adicionar funçao para remover pessoa
+
 public class Projeto {
     private String nome;
     private String acronimo;
@@ -13,11 +15,12 @@ public class Projeto {
     private boolean acabado = false;
     private Scanner escolha = new Scanner(System.in);
 
-    public Projeto(String nome, String acronimo, Data dataInicio, Data dataFim, int duracaoMeses){
+    public Projeto(String nome, String acronimo, Data dataInicio, /*Data dataFim,*/ int duracaoMeses){
+        //TODO supostamente a dataFim so é posta quando o user escolhe acabar com o projeto, logo ficará em comentario a partir de agora
         this.nome = nome;
         this.acronimo = acronimo;
         this.dataInicio = dataInicio;
-        this.dataFim = dataFim;
+        //this.dataFim = dataFim;
         this.duracaoMeses = duracaoMeses;
     }
 
@@ -35,6 +38,9 @@ public class Projeto {
         double total = 0;
         for(int i = 0; i < tarefas.size(); i++){
             total += part * tarefas.get(i).getTaxaExecucao();
+        }
+        if(total == 1){
+            acabado = true;
         }
         return total * 100;
     }
@@ -127,6 +133,7 @@ public class Projeto {
     }
 
     public double custoTotal(){
+        //TODO isto so calcula o custo de um mes, tenho de mudar usando o tempo passado desde o inicio do projeto, ou o tempo passado entre o inicio do projeto ou o seu final
         double custo = 0;
         for(int i = 0; i < participantes.size(); i++){
             custo += participantes.get(i).getCusto();
@@ -134,8 +141,10 @@ public class Projeto {
         return custo;
     }
 
-    public void finalizarProjeto(){
+    //TODO probs ha maneira melhor de escolher a dataFim sem ser como argumento da função, mas vê-se depois
+    public void finalizarProjeto(Data dataFim){
         this.acabado = true;
+        this.dataFim = dataFim;
     }
 
 }
