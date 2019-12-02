@@ -31,7 +31,6 @@ public class Projeto {
     }
 
     public double taxaProgressao(){
-        //TODO usa a percentagem completada de cada tarefa
         double part = 1.0/tarefas.size();
         double total = 0;
         for(int i = 0; i < tarefas.size(); i++){
