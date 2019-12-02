@@ -6,3 +6,4 @@ public class CentroInvestigacao {
     private ArrayList<Pessoa> membros;
     private ArrayList<Projeto> projetos;
 }
+
