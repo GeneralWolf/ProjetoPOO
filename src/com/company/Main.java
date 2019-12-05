@@ -1,8 +1,8 @@
-package com.company;
+package com.mycompany.projeto;
 
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
+	
     }
 }
