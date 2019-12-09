@@ -1,4 +1,4 @@
-package com.mycompany.projeto;
+package com.company;
 
 public class Desenvolvimento extends Tarefa {
     public Desenvolvimento(String descritor, Data dataInicio, Data dataFim, double duracaoEstimada, double taxaExecucao) {

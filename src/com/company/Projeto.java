@@ -21,6 +21,8 @@ public class Projeto {
         this.acronimo = acronimo;
         this.dataInicio = dataInicio;
         this.duracaoMeses = duracaoMeses;
+        participantes =new ArrayList<Pessoa>(50);
+        tarefas = new ArrayList<Tarefa>(50);
     }
 
     public void associarPessoa(Pessoa pessoa){
@@ -59,7 +61,7 @@ public class Projeto {
             try {
                 opcaoN = Integer.parseInt(opcao);   //*isto
                 //TODO adicionar diferentes if's para o tipo de tarefa, já que tarefa é abstrata, mas até se fazer a interface probs nao vale a pena implementar completamente
-                tarefas.add(new Tarefa(descritor, dataInicio, dataFim, duracaoEstimada, taxaExecucao));
+                //tarefas.add(new Tarefa(descritor, dataInicio, dataFim, duracaoEstimada, taxaExecucao));
             }
             catch(NumberFormatException ex)
             {

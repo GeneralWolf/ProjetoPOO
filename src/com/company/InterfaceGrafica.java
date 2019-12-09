@@ -5,33 +5,27 @@ import java.awt.*;
 
 public class InterfaceGrafica extends JFrame {
 
-    CentroInvestigacao test = new CentroInvestigacao();
-
     private JPanel panelPrincipal, panelProjeto;
     private JButton buttonCreate, buttonEnd, buttonAssociate;
-    private JList listProjetos;
-
-
-    //private String[] nomesProjetos = Projeto.     probs obsolete
-    DefaultListModel nomesProjetos = new DefaultListModel();
-    //TODO make method to add all project names to nomesProjetos
+    private static JList<String> listProjetos;
 
     private FlowLayout layout = new FlowLayout();
 
-    public void fillList(DefaultListModel lista, int tamanho, String nome){
+    //TODO ////////////////////7test begin
+    //private String[] nomesProjetos = Projeto.     probs obsolete
+    //TODO make method to add all project names to nomesProjetos
+
+
+
+    public static void fillList(DefaultListModel<String> lista, int tamanho, String nome){
         for(int i = 0; i < tamanho; i++){
             lista.addElement(nome);
         }
     }
 
-    fillList(nomesProjetos, test.projetos.size(), test.projetos.getNome());
-
-    listProjetos = new JList(nomesProjetos);
-    JScrollPane listScroller = new JScrollPane(listProjetos);
 
 
-
-
+//TODO//////////////////////////////////test end
 
 
     public InterfaceGrafica() {
@@ -41,9 +35,9 @@ public class InterfaceGrafica extends JFrame {
 
         //Detalhes da lista
         //call add project names to nomesProjetos here
-
-
-
+        DefaultListModel<String> nomesProjetos = new DefaultListModel<String>();
+        listProjetos = new JList<>(nomesProjetos);
+        JScrollPane listScroller = new JScrollPane(listProjetos);
 
 
         //Detalhes dos botoes
@@ -54,7 +48,7 @@ public class InterfaceGrafica extends JFrame {
 
 
         //add everything
-        panelPrincipal.add(listProjetos);
+        panelPrincipal.add(listScroller);
         panelPrincipal.add(buttonCreate);
         panelPrincipal.add(buttonEnd);
         panelPrincipal.add(buttonAssociate);
@@ -63,8 +57,13 @@ public class InterfaceGrafica extends JFrame {
 
     }
 
+
+    //TODO tset purposes only, will be transfered to main class after
     public static void main(String[] args){
         InterfaceGrafica frame = new InterfaceGrafica();
+
+
+
         frame.setTitle("Centro de Investigação - Projetos");
         frame.setSize(1000, 800);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

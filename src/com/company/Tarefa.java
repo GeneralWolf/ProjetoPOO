@@ -62,4 +62,6 @@ abstract public class Tarefa {
  */
     abstract public double getTaxaEsforco();
 
+    abstract public String getDescritor();
+
 }

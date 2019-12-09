@@ -1,4 +1,4 @@
-package com.mycompany.projeto;
+package com.company;
 
 public class Documentacao extends Tarefa {
     public Documentacao(Data dataInicio, double duracaoEstimada, double taxaExecucao) {

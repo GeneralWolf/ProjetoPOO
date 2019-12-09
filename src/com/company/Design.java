@@ -1,4 +1,4 @@
-package com.mycompany.projeto;
+package com.company;
 public class Design extends Tarefa {
 
     public Design(Data dataInicio, double duracaoEstimada, double taxaExecucao) {
