@@ -12,6 +12,7 @@ public class Main {
 
         CentroInvestigacao centro = new CentroInvestigacao();
         //TODO gotta declare your projects here my bois
+        //TODO dps é automatizar isto de acordo com os ficheiros
         centro.adicionaProjeto(new Projeto("Test1", "t1", new Data(23,42,1000), 8));
         centro.adicionaProjeto(new Projeto("bot1", "b1", new Data(25, 12, 2019), 1));
 
@@ -24,5 +25,18 @@ public class Main {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //frame.setResizable(false);    for now off, since were going to let it be resizable
         frame.setVisible(true);
+
+
+
+        ///////////////////testing////////////////////
+        InterfaceCriarProjeto frame2 = new InterfaceCriarProjeto();
+        frame.setTitle("Criar Projeto");
+        frame.setSize(600, 500);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
+        frame.setVisible(true);
+
+
+
     }
 }

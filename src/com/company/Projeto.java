@@ -9,18 +9,18 @@ public class Projeto {
     private String acronimo;
     private Data dataInicio;
     private Data dataFim;
-    private int duracaoMeses;
+    private int duracaoMesesPrevista;
     private ArrayList<Pessoa> participantes;
     private ArrayList<Tarefa> tarefas;
     private boolean acabado = false;
     private Scanner escolha = new Scanner(System.in);
 
 
-     public Projeto(String nome, String acronimo, Data dataInicio, int duracaoMeses){
+     public Projeto(String nome, String acronimo, Data dataInicio, int duracaoMesesPrevista){
         this.nome = nome;
         this.acronimo = acronimo;
         this.dataInicio = dataInicio;
-        this.duracaoMeses = duracaoMeses;
+        this.duracaoMesesPrevista = duracaoMesesPrevista;
         participantes =new ArrayList<Pessoa>(50);
         tarefas = new ArrayList<Tarefa>(50);
     }
