@@ -1,4 +1,4 @@
-package com.mycompany.projeto;
+package com.company;
 
 public class Data {
     private int dia;

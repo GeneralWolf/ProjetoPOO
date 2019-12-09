@@ -1,6 +1,8 @@
-package com.mycompany.projeto;
+package com.company;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+//TODO adicionar funçao para remover pessoa
 
 public class Projeto {
     private String nome;
@@ -10,107 +12,126 @@ public class Projeto {
     private int duracaoMeses;
     private ArrayList<Pessoa> participantes;
     private ArrayList<Tarefa> tarefas;
+    private boolean acabado = false;
     private Scanner escolha = new Scanner(System.in);
-    
-   
+
+
      public Projeto(String nome, String acronimo, Data dataInicio, int duracaoMeses){
         this.nome = nome;
         this.acronimo = acronimo;
         this.dataInicio = dataInicio;
         this.duracaoMeses = duracaoMeses;
     }
-     /**
-     * 
-     * @param nome nome do projeto
-     * @param acronimo  acrónimo do projeto
-     * @param dataInicio data de início do projeto
-     * @param dataFim   data em que o projeto foi concluído
-     * @param duracaoMeses duração prevista em meses
-     */
-    public Projeto(String nome, String acronimo, Data dataInicio, Data dataFim, int duracaoMeses){
-        this.nome = nome;
-        this.acronimo = acronimo;
-        this.dataInicio = dataInicio;
-        this.dataFim = dataFim;
-        this.duracaoMeses = duracaoMeses;
-    }
-    
-    /**
-     * 
-     * @return taxa de progressão do projeto.
-     */
-     public double taxaProgressao(){
-        //TODO usa a percentagem completada de cada tarefa
-        if (tarefas.size() >0){
-            double part = 1.0/tarefas.size();
-            double total = 0;
-            for(int i = 0; i < tarefas.size(); i++){
-                total += part * tarefas.get(i).getTaxaExecucao();
-            }
-            return total * 100;
-        }
-        else{return 0;}
-     }
-     
-     /**
-      * Adiciona um trabalhador ao projeto
-      * @param pessoa Trabalhador a adicionar
-      * @return 1 se o trabalhador foi adicionado com sucesso ou 0 se o proojeto já terminou ou o trabalhador não pode ser adicionado a mais projetos
-      */
-    public int associarPessoa(Pessoa pessoa){
-        if(taxaProgressao()!=100 && pessoa.adicionaProjeto(this)==1) {
+
+    public void associarPessoa(Pessoa pessoa){
+        if(!acabado) {
             participantes.add(pessoa);
-            return 1;
         }
         else{
-            return 0;
+            System.out.println("O projeto apenas está disponível para consulta");
         }
     }
 
-    /**
-     * 
-     * @return lista das tarefas associadas ao projeto.
-     */
-    public ArrayList<Tarefa> getTarefas(){
-        return tarefas;
-    }
-
-    /**
-     * Associa uma nova tarefa ao projeto.
-     * @param tarefa tarefa a associar
-     */
-    public void adicionarTarefa(Tarefa tarefa){
-        tarefas.add(tarefa);
-    }
-
-    /**
-     * 
-     * @return lista com as tarefas associadas ao projeto ainda não concluídas
-     */
-    public ArrayList<Tarefa> getTarefasNConcluidas(){
-        ArrayList<Tarefa> nconc = new ArrayList();
+    public double taxaProgressao(){
+        double part = 1.0/tarefas.size();
+        double total = 0;
         for(int i = 0; i < tarefas.size(); i++){
-            if((tarefas.get(i).taxaExecucao != 100)){
-                nconc.add(tarefas.get(i));
+            total += part * tarefas.get(i).getTaxaExecucao();
+        }
+        if(total == 1){
+            acabado = true;
+        }
+        return total * 100;
+    }
+
+    public void printTarefas(){
+        for(int i = 0; i < tarefas.size(); i++){
+            System.out.println(i + ". " + tarefas.get(i).descritor + "\tProgresso: " + tarefas.get(i).taxaExecucao + "\n");
+        }
+    }
+
+    public void adicionarTarefa(String descritor, Data dataInicio, Data dataFim, double duracaoEstimada, double taxaExecucao){
+        if(!acabado) {
+            String opcao;   //*isto
+            int opcaoN;     //*isto
+            System.out.println("Que tipo de tarefa?\n1.Desenvolvimento\n2.Design\n3.Documentação"); //TODO probs temporario já que probs vai ser implementado usando a interface grafica, mas para testing purposes está aqui**
+            opcao = escolha.nextLine(); //*isto
+            try {
+                opcaoN = Integer.parseInt(opcao);   //*isto
+                //TODO adicionar diferentes if's para o tipo de tarefa, já que tarefa é abstrata, mas até se fazer a interface probs nao vale a pena implementar completamente
+                tarefas.add(new Tarefa(descritor, dataInicio, dataFim, duracaoEstimada, taxaExecucao));
+            }
+            catch(NumberFormatException ex)
+            {
+                System.out.println("Escreva um número por favor");  //*isto
+            }
+
+        }
+        else{
+            System.out.println("O projeto apenas está disponível para consulta");
+        }
+    }
+
+    public void apagarTarefa() {
+        String opcao;   //*isto
+        int opcaoN;     //*isto
+        if (!acabado) {
+            printTarefas();
+            System.out.println("Escolha o número da tarefa a eliminar\n");  //*isto
+            opcao = escolha.nextLine(); //*isto
+            opcao = escolha.nextLine(); //*isto
+            try {
+                //TODO probs temporario já que probs vai ser implementado usando a interface grafica, mas para testing purposes está aqui**
+                opcaoN = Integer.parseInt(opcao);   //*isto
+                tarefas.remove(opcaoN);
+            } catch (NumberFormatException ex) {
+                System.out.println("Escreva um número por favor");  //*isto
+            }
+        } else {
+            System.out.println("O projeto apenas está disponível para consulta");
+        }
+    }
+
+    public void printTarefasNIniciadas(){
+        int counter = 0;
+        for(int i = 0; i < tarefas.size(); i++){
+            if(tarefas.get(i).taxaExecucao == 0){
+                System.out.println(i + ". " + tarefas.get(i).descritor + "\n");
+                counter++;
             }
         }
-        return nconc;
+        if(counter == 0){
+            System.out.println("Todas as tarefas já foram iniciadas");
+        }
     }
-/**
- * 
- * @return lista das tarefas associadas ao projeto que já foram concluídas
- */
-    public ArrayList<Tarefa> getTarefasConcluidas(){
-        ArrayList<Tarefa> conc = new ArrayList();
+
+    public void printTarefasNConcluidas(){
+        int counter = 0;
+        for(int i = 0; i < tarefas.size(); i++){
+            if((tarefas.get(i).taxaExecucao != 100) && (tarefas.get(i).taxaExecucao != 0)){
+                System.out.println(i + ". " + tarefas.get(i).descritor + "\tProgresso: " + tarefas.get(i).taxaExecucao + "\n");
+                counter++;
+            }
+        }
+        if(counter == 0){
+            System.out.println("Nenhuma tarefa foi deixada a meio");
+        }
+    }
+
+    public void printTarefasConcluidas(){
+        int counter = 0;
         for(int i = 0; i < tarefas.size(); i++){
             if(tarefas.get(i).taxaExecucao == 100){
-               conc.add(tarefas.get(i)); 
+                System.out.println(i + ". " + tarefas.get(i).descritor + "\n");
+                counter++;
             }
         }
-        return conc;
+        if(counter == 0){
+            System.out.println("Nenhuma tarefa foi concluída");
+        }
     }
 /**
- * 
+ *
  * @return custo total do projeto com base nos ordenados dos trabalhadores associados e na sua duração.
  */
     public double custoTotal(){
@@ -118,7 +139,21 @@ public class Projeto {
         for(int i = 0; i < participantes.size(); i++){
             custo += participantes.get(i).getCusto();
         }
-        return custo*(duracaoMeses+1);
+        return custo;
+    }
+
+    //TODO probs ha maneira melhor de escolher a dataFim sem ser como argumento da função, mas vê-se depois
+    public void finalizarProjeto(Data dataFim){
+        this.acabado = true;
+        this.dataFim = dataFim;
+    }
+
+    public String getNome(){
+        return this.nome;
+    }
+
+    public ArrayList<Tarefa> getTarefas(){
+        return this.tarefas;
     }
 
 }

@@ -1,4 +1,4 @@
-package com.mycompany.projeto;
+package com.company;
 
 abstract public class Tarefa {
     protected String descritor;     //TODO para dar para diferenciar as tarefas e para depois ter algo para por na interface
@@ -9,20 +9,21 @@ abstract public class Tarefa {
     protected Pessoa responsavel;
 
     /**
-     * 
+     *
      * @param dataInicio Data de início da tarefa
      * @param duracaoEstimada   Duração estimada para a tarefa
      * @param taxaExecucao  Taxa de execução da tarefa
      */
     public Tarefa(Data dataInicio, double duracaoEstimada, double taxaExecucao){
         this.dataInicio = dataInicio;
+        this.dataFim = dataFim;
         this.duracaoEstimada = duracaoEstimada;
         this.taxaExecucao = taxaExecucao;
     }
 
     /**
-     * 
-     * @return trabalhador responsável pela tarefa 
+     *
+     * @return trabalhador responsável pela tarefa
      */
     public Pessoa getResponsavel(){
         return responsavel;
@@ -49,15 +50,15 @@ abstract public class Tarefa {
     }
 
     /**
-     * 
-     * @return taxa de execução da tarefa 
+     *
+     * @return taxa de execução da tarefa
      */
     public double getTaxaExecucao(){
         return taxaExecucao;
     }
 /**
- * 
- * @return taxa de esforço associada à tarefa 
+ *
+ * @return taxa de esforço associada à tarefa
  */
     abstract public double getTaxaEsforco();
 
