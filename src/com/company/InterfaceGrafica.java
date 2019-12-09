@@ -2,33 +2,24 @@ package com.company;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class InterfaceGrafica extends JFrame {
 
     private JPanel panelPrincipal, panelProjeto;
     private JButton buttonCreate, buttonEnd, buttonAssociate;
-    private static JList<String> listProjetos;
+    private JList<String> listProjetos;
 
     private FlowLayout layout = new FlowLayout();
 
-    //TODO ////////////////////7test begin
-    //private String[] nomesProjetos = Projeto.     probs obsolete
-    //TODO make method to add all project names to nomesProjetos
-
-
-
-    public static void fillList(DefaultListModel<String> lista, int tamanho, String nome){
+    public static void fillList(DefaultListModel<String> lista, int tamanho, ArrayList<Projeto> list){
         for(int i = 0; i < tamanho; i++){
-            lista.addElement(nome);
+            //lista.addElement(nome);
+            lista.addElement(list.get(i).getNome());
         }
     }
 
-
-
-//TODO//////////////////////////////////test end
-
-
-    public InterfaceGrafica() {
+    public InterfaceGrafica(CentroInvestigacao ci) {
         //Detalhes do painel
         panelPrincipal = new JPanel();
         panelPrincipal.setLayout(layout);
@@ -38,7 +29,8 @@ public class InterfaceGrafica extends JFrame {
         DefaultListModel<String> nomesProjetos = new DefaultListModel<String>();
         listProjetos = new JList<>(nomesProjetos);
         JScrollPane listScroller = new JScrollPane(listProjetos);
-
+        fillList(nomesProjetos, ci.projetos.size(), ci.projetos);
+    //TODO o metodo de meter os nomes dos projetos tem de ser metida aqui
 
         //Detalhes dos botoes
         buttonCreate = new JButton("Criar Projeto");
@@ -57,7 +49,7 @@ public class InterfaceGrafica extends JFrame {
 
     }
 
-
+/*
     //TODO tset purposes only, will be transfered to main class after
     public static void main(String[] args){
         InterfaceGrafica frame = new InterfaceGrafica();
@@ -70,4 +62,6 @@ public class InterfaceGrafica extends JFrame {
         //frame.setResizable(false);    for now off, since were going to let it be resizable
         frame.setVisible(true);
     }
+
+ */
 }
