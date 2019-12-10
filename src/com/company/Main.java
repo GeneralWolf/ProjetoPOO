@@ -16,7 +16,7 @@ public class Main {
         centro.adicionaProjeto(new Projeto("Test1", "t1", new Data(23,42,1000), 8));
         centro.adicionaProjeto(new Projeto("bot1", "b1", new Data(25, 12, 2019), 1));
 
-
+/*
         InterfaceGrafica frame = new InterfaceGrafica(centro);
 
 
@@ -26,17 +26,15 @@ public class Main {
         //frame.setResizable(false);    for now off, since were going to let it be resizable
         frame.setVisible(true);
 
-
+*/
 
         ///////////////////testing////////////////////
         InterfaceCriarProjeto frame2 = new InterfaceCriarProjeto();
-        frame.setTitle("Criar Projeto");
-        frame.setSize(600, 500);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(false);
-        frame.setVisible(true);
-
-
+        frame2.setTitle("Criar Projeto");
+        frame2.setSize(480, 350);
+        frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame2.setResizable(false);
+        frame2.setVisible(true);
 
     }
 }
