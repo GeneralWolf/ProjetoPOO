@@ -1,9 +1,7 @@
 package com.company;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
-import java.util.ArrayList;
 
 public class InterfaceCriarProjeto extends JFrame {
     private JPanel panelCriar;
@@ -11,7 +9,7 @@ public class InterfaceCriarProjeto extends JFrame {
     private JButton buttonCriar;
     private JLabel labelNome, labelAcronimo, labelDia, labelMes, labelAno, labelDuracao;
 
-    public InterfaceCriarProjeto(){
+    public InterfaceCriarProjeto(CentroInvestigacao ci){
         super();
 
         //panels
@@ -50,6 +48,35 @@ public class InterfaceCriarProjeto extends JFrame {
         buttonCriar = new JButton("Criar");
         buttonCriar.setBounds(20, 260, 430, 30);
 
+        //TODO o actionListener nao tem uma classe propria pois so assim é que consigo devolver o valor do retTemp
+        //ButtonListenerCriarProj listener = new ButtonListenerCriarProj();
+        buttonCriar.addActionListener(new ActionListener(){
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Projeto retTemp;
+            try{
+                String nome = textFieldNome.getText();
+                String acronimo = textFieldAcronimo.getText();
+                String diaTemp = textFieldDia.getText();
+                int dia = Integer.parseInt(diaTemp);
+                String mesTemp = textFieldMes.getText();
+                int mes = Integer.parseInt(mesTemp);
+                String anoTemp = textFieldAno.getText();
+                int ano = Integer.parseInt(anoTemp);
+                String duracaoTemp = textFieldDuracao.getText();
+                int duracao = Integer.parseInt(duracaoTemp);
+
+                //TODO ver se dar return a isto faz com que consiga usar para criar um projeto
+                retTemp = new Projeto(nome, acronimo, new Data(dia, mes, ano), duracao);
+                ci.adicionaProjeto(retTemp);
+
+
+            }catch(NumberFormatException ex){
+                JOptionPane.showMessageDialog(null, "Um dos valores numéricos inseridos não é aceitável!", "Valor inválido", JOptionPane.ERROR_MESSAGE);
+            }//TODO talvez adicionar uma exceçao caso retTemp esteja vazio, idk
+        }
+    }); //////////////////////nao mexas na gramatica, isto esta definitivamente correto////////////////////////
+
         //Add everything
         panelCriar.add(labelNome);
         panelCriar.add(labelAcronimo);
@@ -68,10 +95,12 @@ public class InterfaceCriarProjeto extends JFrame {
         this.add(panelCriar);
     }
 
-    private class ButtonListener implements ActionListener {
+    /*
+    private class ButtonListenerCriarProj implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            Projeto retTemp;
             try{
                 String nome = textFieldNome.getText();
                 String acronimo = textFieldAcronimo.getText();
@@ -81,7 +110,16 @@ public class InterfaceCriarProjeto extends JFrame {
                 int mes = Integer.parseInt(mesTemp);
                 String anoTemp = textFieldAno.getText();
                 int ano = Integer.parseInt(anoTemp);
+                String duracaoTemp = textFieldDuracao.getText();
+                int duracao = Integer.parseInt(duracaoTemp);
+                //TODO ver se dar return a isto faz com que consiga usar para criar um projeto
+                retTemp = new Projeto(nome, acronimo, new Data(dia, mes, ano), duracao);
+
+            }catch(NumberFormatException ex){
+                JOptionPane.showMessageDialog(null, "Um dos valores numéricos inseridos não é aceitável!", "Valor inválido", JOptionPane.ERROR_MESSAGE);
             }
         }
     }
+
+     */
 }

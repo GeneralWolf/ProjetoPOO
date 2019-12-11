@@ -2,6 +2,7 @@ package com.company;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 import java.util.ArrayList;
 
 public class InterfaceGrafica extends JFrame {
@@ -19,6 +20,10 @@ public class InterfaceGrafica extends JFrame {
         }
     }
 
+    public void fillSingle(DefaultListModel<String> lista, Projeto proj){
+        lista.addElement(proj.getNome());
+    }
+
     public InterfaceGrafica(CentroInvestigacao ci) {
         //Detalhes do painel
         panelPrincipal = new JPanel();
@@ -34,6 +39,19 @@ public class InterfaceGrafica extends JFrame {
         buttonCreate = new JButton("Criar Projeto");
         buttonEnd = new JButton("Concluir Projeto");
         buttonAssociate = new JButton("Associar pessoa");
+
+        buttonCreate.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                InterfaceCriarProjeto frame2 = new InterfaceCriarProjeto(ci);
+                frame2.setTitle("Criar Projeto");
+                frame2.setSize(480, 350);
+                frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame2.setResizable(false);
+                frame2.setVisible(true);
+                //fillSingle(nomesProjetos, ci.projetos.get(ci.projetos.size() - 1));
+            }
+        });
 
 
         //add everything
