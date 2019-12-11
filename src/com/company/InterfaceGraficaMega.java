@@ -13,8 +13,9 @@ public class InterfaceGraficaMega extends JFrame {
     private JButton buttonCreate, buttonEnd, buttonAssociate;
 
 
-    DefaultListModel<String> nomesProjetos = new DefaultListModel<String>();
-    private JList<String> listProjetos = new JList<>(nomesProjetos);
+    public DefaultListModel<String> nomesProjetos = new DefaultListModel<String>();
+    protected JList<String> listProjetos = new JList<>(nomesProjetos);
+    protected JScrollPane listScroller = new JScrollPane(listProjetos);
 
 
     private FlowLayout layout = new FlowLayout();
@@ -28,10 +29,8 @@ public class InterfaceGraficaMega extends JFrame {
 
     public void fillSingle(DefaultListModel<String> lista, Projeto proj){
         lista.addElement(proj.getNome());
-                System.out.println("fillSimple feito\n");
+                System.out.println("fillSimple nome: " + proj.getNome());
     }
-
-
 
     public InterfaceGraficaMega(CentroInvestigacao ci) {
         //Detalhes do painel
@@ -41,7 +40,7 @@ public class InterfaceGraficaMega extends JFrame {
         //Detalhes da lista
         //DefaultListModel<String> nomesProjetos = new DefaultListModel<String>();
         //listProjetos = new JList<>(nomesProjetos);
-        JScrollPane listScroller = new JScrollPane(listProjetos);
+        //JScrollPane listScroller = new JScrollPane(listProjetos);
         fillList(nomesProjetos, ci.projetos.size(), ci.projetos);
 
         //Detalhes dos botoes

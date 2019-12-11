@@ -77,9 +77,15 @@ public class InterfaceCriarProjeto2 extends InterfaceGraficaMega{
 
                     retTemp = new Projeto(nome, acronimo, new Data(dia, mes, ano), duracao);
 
+
+                            //System.out.println(InterfaceCriarProjeto2.super.nomesProjetos);
+
                     ci.adicionaProjeto(retTemp);
                     fillSingle(nomesProjetos, retTemp);
-                    System.out.println(retTemp.getNome());
+                            //System.out.println(retTemp.getNome());
+                            System.out.println(InterfaceCriarProjeto2.super.nomesProjetos);   //isto prova que nomesProjetos recebe o nome
+
+
 
                 }catch(NumberFormatException ex){
                     JOptionPane.showMessageDialog(null, "Um dos valores numéricos inseridos não é aceitável!", "Valor inválido", JOptionPane.ERROR_MESSAGE);
