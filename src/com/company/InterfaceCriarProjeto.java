@@ -54,6 +54,7 @@ public class InterfaceCriarProjeto extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             Projeto retTemp;
+            System.out.println("hello");
             try{
                 String nome = textFieldNome.getText();
                 String acronimo = textFieldAcronimo.getText();
