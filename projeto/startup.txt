@@ -1,0 +1,57 @@
+Novo Centro
+D	Gil Gates	gates	1	Sistemas Operativos
+D	Nuno Pimentel	nuno	2	Programação Orientada a Objetos
+D	Fernando Jarros	jarros	3	Programação Orientada a Objetos	
+D	Maria Temido	maria	4	Neurologia
+D	Ângela Baía	angie	5	Comportamento Humano
+D	Ernesto Baía	ernesto	6	Inteligência Artificial
+D	Paulo Picasso	picasso	7	Web Design
+D	Helena Vaqueiro	lena	8	Física Quântica
+D	Karl Marcos	marcos	9	Gestão de Marketing
+D	Nelso Makelele	nelso	10	Mecânica Estrutural
+D	Anthony Granjal	granjal	11	Redes de Comunicação
+D	Paula Borges	borges	12	Gestão Ambiental
+D	Gordon Yasmar	yasmar	13	Gastronomia Moderna
+D	Carlos Gauss	gauss	14	Álgebra e Combinatória
+D	Sophia Pereira	sophia	15	Modelação e Simulação Molecular
+D	Clara Madeira	clara	16	Materiais e Biomateriais
+D	Adolfo Belo	belo	17	Nanomateriais e Nanotecnologia
+D	Isabel Matias	isam	18	Física de Raios Cósmicos
+D	Éder Macedo	eder	19	Urbanismo, Transportes e Vias de Comunicação
+D	Mariano Santos	mariano	20	Geotecnia
+L	Vitor Martins	vitorm	 
+L	Mateus Barros	mbarros
+L	Luís Oliveira	loliveira
+L	Martim Silva	martimsilva
+L	Samuel Araujo	samujo
+L	João Pinto	jpinto
+L	Júlio Sousa	juliosousa
+L	Luan Rodrigues	lurodrigues
+L	Tiago Gonçalves	tiagogonc
+L	Vitor Dias	vitordias
+L	Tomás Rodrigues	tomrodrigues
+L	Julieta Pereira	julietap
+L	Lara Barros	larabarros
+L	Manuela Correia	manucorreia
+L	Carolina Duarte	carolduart
+L	Alice Castro	alicec
+L	Mariana Castro	marianacastro
+L	Ana Fonseca	anafonc
+L	Beatriz Alves	bealves
+M	Alexandre Melo	alexmelo
+M	Renato Malato	renatom
+M	Bruno Carvalho	ripsporting
+M	David Almeida	davidalmeida
+M	João Raposo	jraposo
+M	Adriano Marques	adrimarques
+M	Patrícia Mendes	patimendes
+M	Alexandra Bento	xanabento
+M	Ana Montana	montana
+M	Bárbara Fonte	barbaraf
+M	Joana Pina	pinajoana
+Dt	Vitor Carvalho	vitorcar
+Dt	Filipe Sousa	filipesousa
+Dt	Rodrigo Tavares	rodtavares
+Dt	Luciana Abreu	lyonceviktorya	
+Dt	Vitoria Costa	vitoriacosta
+Dt	Marisa Mateus	marisamateus
