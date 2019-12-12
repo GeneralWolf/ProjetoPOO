@@ -4,6 +4,7 @@ import com.company.*;
 import java.util.ArrayList;
 
 public class CentroInvestigacao {
+    private String nome;
     public ArrayList<Pessoa> membros;
     public ArrayList<Projeto> projetos;
 
@@ -23,6 +24,10 @@ public class CentroInvestigacao {
     CentroInvestigacao(){
         membros = new ArrayList<Pessoa>(150);
         projetos = new ArrayList<Projeto>(150);
+    }
+
+    public String getName(){
+        return this.nome;
     }
 
 }

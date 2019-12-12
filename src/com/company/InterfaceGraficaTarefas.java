@@ -9,6 +9,7 @@ public class InterfaceGraficaTarefas extends JFrame{
 
     private JPanel panelTar;
     private JButton buttonCriar, buttonElim, buttonAtribuir, buttonTaxa, buttonCusto, buttonRemovePessoa;
+    private JTextField textFieldTaxa;
 
     private DefaultListModel<String> tarefas = new DefaultListModel<String>();
     private JList<String> listTarefas = new JList<>(tarefas);
@@ -49,6 +50,10 @@ public class InterfaceGraficaTarefas extends JFrame{
         panelTar = new JPanel();
         panelTar.setLayout(null);
 
+        //def textField
+        textFieldTaxa = new JTextField();
+        textFieldTaxa.setBounds(420, 220, 250, 30);
+
         //def buttons
         buttonCriar = new JButton("Criar Tarefa");
         buttonCriar.setBounds(420, 20, 250, 30);
@@ -59,9 +64,9 @@ public class InterfaceGraficaTarefas extends JFrame{
         buttonTaxa = new JButton("Atualizar a execução de uma tarefa");
         buttonTaxa.setBounds(420, 170, 250, 30);
         buttonCusto = new JButton("Ver o custo de um projeto");
-        buttonCusto.setBounds(420, 220, 250, 30);
+        buttonCusto.setBounds(420, 270, 250, 30);
         buttonRemovePessoa = new JButton("Remover uma pessoa do projeto");
-        buttonRemovePessoa.setBounds(420, 270, 250, 30);
+        buttonRemovePessoa.setBounds(420, 320, 250, 30);
 
         //def lists
         fillListPessoas(proj.getPessoas());
@@ -79,6 +84,14 @@ public class InterfaceGraficaTarefas extends JFrame{
                 frame4.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
                 frame4.setResizable(false);
                 frame4.setVisible(true);
+                //fillSingle(nomesProjetos, ci.projetos.get(ci.projetos.size() - 1));   //shit fuckin works
+            }
+        });
+
+        buttonTaxa.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+
                 //fillSingle(nomesProjetos, ci.projetos.get(ci.projetos.size() - 1));   //shit fuckin works
             }
         });
