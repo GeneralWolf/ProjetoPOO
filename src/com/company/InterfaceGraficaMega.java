@@ -218,7 +218,7 @@ public class InterfaceGraficaMega extends JFrame {
 
         public void fillListTarefas(ArrayList<Tarefa> list){
             for(int i = 0; i < list.size(); i++){
-                pessoas.addElement(list.get(i).getDescritor());
+                tarefas.addElement(list.get(i).getDescritor());
             }
         }
 
@@ -230,8 +230,8 @@ public class InterfaceGraficaMega extends JFrame {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
 
+            tarefas.clear();
             projetoAtual = centro.projetos.get(listProjetos.getSelectedIndex());
-                    System.out.println("fokin test" + projetoAtual.getNome());
 
             frameTar = new JFrame();
             frameTar.setTitle("Criar Projeto");
@@ -262,13 +262,13 @@ public class InterfaceGraficaMega extends JFrame {
             buttonRemovePessoa = new JButton("Remover uma pessoa do projeto");
             buttonRemovePessoa.setBounds(420, 320, 250, 30);
 
-            //TODO tenho de arranjar uma maneira de transmitir as listas do projeto a esta merda
+
             //def lists
             fillListPessoas(projetoAtual.getPessoas());
             fillListTarefas(projetoAtual.getTarefas());
 
-            listTarefas.setBounds(20, 340, 380, 300);
-            listPessoas.setBounds(20, 20, 380, 300);
+            listTarefas.setBounds(20, 20, 380, 300);
+            listPessoas.setBounds(20, 340, 380, 300);
 
             //add.everything
             panelTar.add(listTarefas);
