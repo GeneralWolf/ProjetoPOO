@@ -48,7 +48,7 @@ public class Projeto {
 
     public void printTarefas(){
         for(int i = 0; i < tarefas.size(); i++){
-            System.out.println(i + ". " + tarefas.get(i).descritor + "\tProgresso: " + tarefas.get(i).taxaExecucao + "\n");
+            System.out.println(i + ". " + tarefas.get(i).getDescritor() + "\tProgresso: " + tarefas.get(i).taxaExecucao + "\n");
         }
     }
 
@@ -98,7 +98,7 @@ public class Projeto {
         int counter = 0;
         for(int i = 0; i < tarefas.size(); i++){
             if(tarefas.get(i).taxaExecucao == 0){
-                System.out.println(i + ". " + tarefas.get(i).descritor + "\n");
+                System.out.println(i + ". " + tarefas.get(i).getDescritor() + "\n");
                 counter++;
             }
         }
@@ -111,7 +111,7 @@ public class Projeto {
         int counter = 0;
         for(int i = 0; i < tarefas.size(); i++){
             if((tarefas.get(i).taxaExecucao != 100) && (tarefas.get(i).taxaExecucao != 0)){
-                System.out.println(i + ". " + tarefas.get(i).descritor + "\tProgresso: " + tarefas.get(i).taxaExecucao + "\n");
+                System.out.println(i + ". " + tarefas.get(i).getDescritor() + "\tProgresso: " + tarefas.get(i).taxaExecucao + "\n");
                 counter++;
             }
         }
@@ -124,7 +124,7 @@ public class Projeto {
         int counter = 0;
         for(int i = 0; i < tarefas.size(); i++){
             if(tarefas.get(i).taxaExecucao == 100){
-                System.out.println(i + ". " + tarefas.get(i).descritor + "\n");
+                System.out.println(i + ". " + tarefas.get(i).getDescritor() + "\n");
                 counter++;
             }
         }
@@ -156,6 +156,10 @@ public class Projeto {
 
     public ArrayList<Tarefa> getTarefas(){
         return this.tarefas;
+    }
+
+    public ArrayList<Pessoa> getPessoas(){
+        return this.participantes;
     }
 
 }

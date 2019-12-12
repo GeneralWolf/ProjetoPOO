@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class InterfaceGraficaMega extends JFrame {
 
     private JPanel panelPrincipal, panelProjeto;
-    private JButton buttonCreate, buttonEnd, buttonAssociate;
+    private JButton buttonCreate, buttonSelect, buttonAssociate;
 
 
     public DefaultListModel<String> nomesProjetos = new DefaultListModel<String>();
@@ -20,15 +20,15 @@ public class InterfaceGraficaMega extends JFrame {
 
     private FlowLayout layout = new FlowLayout();
 
-    public void fillList(DefaultListModel<String> lista, int tamanho, ArrayList<Projeto> list){
-        for(int i = 0; i < tamanho; i++){
+    public void fillListProj( ArrayList<Projeto> list){
+        for(int i = 0; i < list.size(); i++){
             //lista.addElement(nome);
-            lista.addElement(list.get(i).getNome());
+            nomesProjetos.addElement(list.get(i).getNome());
         }
     }
 
-    public void fillSingle(DefaultListModel<String> lista, Projeto proj){
-        lista.addElement(proj.getNome());
+    public void fillSingleProj(Projeto proj){
+        nomesProjetos.addElement(proj.getNome());
                 System.out.println("fillSimple nome: " + proj.getNome());
     }
 
@@ -41,11 +41,11 @@ public class InterfaceGraficaMega extends JFrame {
         //DefaultListModel<String> nomesProjetos = new DefaultListModel<String>();
         //listProjetos = new JList<>(nomesProjetos);
         //JScrollPane listScroller = new JScrollPane(listProjetos);
-        fillList(nomesProjetos, ci.projetos.size(), ci.projetos);
+        fillListProj(ci.projetos);
 
         //Detalhes dos botoes
         buttonCreate = new JButton("Criar Projeto");
-        buttonEnd = new JButton("Concluir Projeto");
+        buttonSelect = new JButton("Concluir Projeto");
         buttonAssociate = new JButton("Associar pessoa");
 
         buttonCreate.addActionListener(new ActionListener() {
@@ -54,7 +54,7 @@ public class InterfaceGraficaMega extends JFrame {
                 InterfaceCriarProjeto2 frame2 = new InterfaceCriarProjeto2(ci);
                 frame2.setTitle("Criar Projeto");
                 frame2.setSize(480, 350);
-                frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame2.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
                 frame2.setResizable(false);
                 frame2.setVisible(true);
                 //fillSingle(nomesProjetos, ci.projetos.get(ci.projetos.size() - 1));   //shit fuckin works
@@ -65,7 +65,7 @@ public class InterfaceGraficaMega extends JFrame {
         panelPrincipal.add(listScroller);
         listScroller.setPreferredSize(new Dimension(700, 600));     //escolhe o tamanho da lista dos projetos
         panelPrincipal.add(buttonCreate);
-        panelPrincipal.add(buttonEnd);
+        panelPrincipal.add(buttonSelect);
         panelPrincipal.add(buttonAssociate);
 
         this.add(panelPrincipal);

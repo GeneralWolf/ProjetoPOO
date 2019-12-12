@@ -68,4 +68,8 @@ public abstract class Pessoa {
      * @return 1 se o trabalhador foi adicionado com sucesso ou 0 se o trabalhador não pode ser adicionado a mais projetos.
      */
     public abstract int adicionaProjeto(Projeto projeto);
+
+    public String getNome(){
+        return this.nome;
+    }
 }
