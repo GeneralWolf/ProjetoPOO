@@ -177,6 +177,7 @@ public class InterfaceGraficaMega extends JFrame {
             }
         }
 
+        //TODO dont know if needed
         class selecionarListener implements ActionListener{
 
             @Override
@@ -228,6 +229,10 @@ public class InterfaceGraficaMega extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
+
+            projetoAtual = centro.projetos.get(listProjetos.getSelectedIndex());
+                    System.out.println("fokin test" + projetoAtual.getNome());
+
             frameTar = new JFrame();
             frameTar.setTitle("Criar Projeto");
             frameTar.setSize(700, 700);
@@ -259,11 +264,11 @@ public class InterfaceGraficaMega extends JFrame {
 
             //TODO tenho de arranjar uma maneira de transmitir as listas do projeto a esta merda
             //def lists
-            //fillListPessoas(projetoAtual.getPessoas());
-            //fillListTarefas(projetoAtual.getTarefas());
+            fillListPessoas(projetoAtual.getPessoas());
+            fillListTarefas(projetoAtual.getTarefas());
 
-            listTarefas.setBounds(20, 20, 380, 300);
-            listPessoas.setBounds(20, 340, 380, 300);
+            listTarefas.setBounds(20, 340, 380, 300);
+            listPessoas.setBounds(20, 20, 380, 300);
 
             //add.everything
             panelTar.add(listTarefas);
