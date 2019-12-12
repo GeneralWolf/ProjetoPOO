@@ -21,7 +21,8 @@ public class CentroInvestigacao {
         membros.add(p);
     }
 
-    CentroInvestigacao(){
+    CentroInvestigacao(String nome){
+        this.nome = nome;
         membros = new ArrayList<Pessoa>(150);
         projetos = new ArrayList<Projeto>(150);
     }

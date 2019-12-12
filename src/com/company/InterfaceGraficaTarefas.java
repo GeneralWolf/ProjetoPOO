@@ -98,19 +98,16 @@ public class InterfaceGraficaTarefas extends JFrame{
 
         //add everything
         panelTar.add(listTarefas);
-
         panelTar.add(listPessoas);
-
         panelTar.add(buttonCriar);
         panelTar.add(buttonElim);
         panelTar.add(buttonAtribuir);
         panelTar.add(buttonTaxa);
         panelTar.add(buttonCusto);
         panelTar.add(buttonRemovePessoa);
-
         panelTar.add(listTarefas);
-
         panelTar.add(listPessoas);
+        panelTar.add(textFieldTaxa);
 
         this.add(panelTar);
     }
