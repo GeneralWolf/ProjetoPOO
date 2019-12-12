@@ -52,26 +52,8 @@ public class Projeto {
         }
     }
 
-    public void adicionarTarefa(String descritor, Data dataInicio, Data dataFim, double duracaoEstimada, double taxaExecucao){
-        if(!acabado) {
-            String opcao;   //*isto
-            int opcaoN;     //*isto
-            System.out.println("Que tipo de tarefa?\n1.Desenvolvimento\n2.Design\n3.Documentação"); //TODO probs temporario já que probs vai ser implementado usando a interface grafica, mas para testing purposes está aqui**
-            opcao = escolha.nextLine(); //*isto
-            try {
-                opcaoN = Integer.parseInt(opcao);   //*isto
-                //TODO adicionar diferentes if's para o tipo de tarefa, já que tarefa é abstrata, mas até se fazer a interface probs nao vale a pena implementar completamente
-                //tarefas.add(new Tarefa(descritor, dataInicio, dataFim, duracaoEstimada, taxaExecucao));
-            }
-            catch(NumberFormatException ex)
-            {
-                System.out.println("Escreva um número por favor");  //*isto
-            }
-
-        }
-        else{
-            System.out.println("O projeto apenas está disponível para consulta");
-        }
+    public void adicionarTarefa(Tarefa tar){
+        tarefas.add(tar);
     }
 
     public void apagarTarefa() {

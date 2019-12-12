@@ -70,6 +70,19 @@ public class InterfaceGraficaTarefas extends JFrame{
         listTarefas.setBounds(20, 20, 380, 300);
         listPessoas.setBounds(20, 340, 380, 300);
 
+        buttonCriar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                InterfaceCriarTarefa frame4 = new InterfaceCriarTarefa(proj);
+                frame4.setTitle("Criar Tarefa");
+                frame4.setSize(500, 320);
+                frame4.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+                frame4.setResizable(false);
+                frame4.setVisible(true);
+                //fillSingle(nomesProjetos, ci.projetos.get(ci.projetos.size() - 1));   //shit fuckin works
+            }
+        });
+
         //add everything
         panelTar.add(listTarefas);
 

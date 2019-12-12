@@ -14,12 +14,11 @@ abstract public class Tarefa {
      * @param duracaoEstimada   Duração estimada para a tarefa
      * @param taxaExecucao  Taxa de execução da tarefa
      */
-    public Tarefa(String descritor,Data dataInicio, double duracaoEstimada, double taxaExecucao){
+    public Tarefa(String descritor,Data dataInicio, double duracaoEstimada){
         this.descritor = descritor;
         this.dataInicio = dataInicio;
-        this.dataFim = dataFim;
         this.duracaoEstimada = duracaoEstimada;
-        this.taxaExecucao = taxaExecucao;
+        this.taxaExecucao = 0;
     }
 
     /**

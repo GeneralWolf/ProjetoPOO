@@ -1,8 +1,8 @@
 package com.company;
 
 public class Documentacao extends Tarefa {
-    public Documentacao(String descritor, Data dataInicio, double duracaoEstimada, double taxaExecucao) {
-        super(descritor, dataInicio,duracaoEstimada, taxaExecucao);
+    public Documentacao(String descritor, Data dataInicio, double duracaoEstimada) {
+        super(descritor, dataInicio,duracaoEstimada);
     }
 
     @Override
