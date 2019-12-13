@@ -341,7 +341,7 @@ public class InterfaceGraficaMega extends JFrame {
 
             frameCriar = new JFrame();
             frameCriar.setTitle("Gestão do projeto" + projetoAtual.getNome());
-            frameCriar.setSize(700, 700);
+            frameCriar.setSize(500, 300);
             frameCriar.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
             frameCriar.setResizable(false);
             frameCriar.setVisible(true);
@@ -364,15 +364,15 @@ public class InterfaceGraficaMega extends JFrame {
 
             //text fields
             textFieldDescritor = new JTextField();
-            textFieldDescritor.setBounds(150, 20, 300, 20);
+            textFieldDescritor.setBounds(150, 20, 320, 20);
             textFieldDia = new JTextField();
-            textFieldDia.setBounds(150, 60, 300, 20);
+            textFieldDia.setBounds(150, 60, 320, 20);
             textFieldMes = new JTextField();
-            textFieldMes.setBounds(150, 100, 300, 20);
+            textFieldMes.setBounds(150, 100, 320, 20);
             textFieldAno = new JTextField();
-            textFieldAno.setBounds(150, 140, 300, 20);
+            textFieldAno.setBounds(150, 140, 320, 20);
             textFieldDuracao = new JTextField();
-            textFieldDuracao.setBounds(150, 180, 300, 20);
+            textFieldDuracao.setBounds(150, 180, 320, 20);
 
             //buttons
             buttonCriarDesenvolvimento = new JButton("Desenvolvimento");
