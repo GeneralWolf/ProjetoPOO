@@ -340,7 +340,7 @@ public class InterfaceGraficaMega extends JFrame {
         public void actionPerformed(ActionEvent actionEvent) {
 
             frameCriar = new JFrame();
-            frameCriar.setTitle("Gestão do projeto" + projetoAtual.getNome());
+            frameCriar.setTitle("Criar tarefa para o projeto " + projetoAtual.getNome());
             frameCriar.setSize(500, 300);
             frameCriar.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
             frameCriar.setResizable(false);
