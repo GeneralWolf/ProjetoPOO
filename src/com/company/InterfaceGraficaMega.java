@@ -13,7 +13,7 @@ public class InterfaceGraficaMega extends JFrame {
     protected JButton buttonCreate, buttonSelect, buttonAssociate;
     protected CentroInvestigacao centro;
     protected Projeto projetoAtual;
-    protected int indexProj, indexTar;
+    protected int indexProj, indexTar, indexPerson;
 
     protected DefaultListModel<String> nomesProjetos = new DefaultListModel<String>();
     protected JList<String> listProjetos = new JList<>(nomesProjetos);
@@ -250,6 +250,10 @@ public class InterfaceGraficaMega extends JFrame {
 
             buttonElim.addActionListener(new elimListener());
             buttonCriar.addActionListener(new InterfaceCriarTarefa());
+            buttonTaxa.addActionListener(new updateListener());
+            buttonCusto.addActionListener(new costListener());
+            buttonRemovePessoa.addActionListener(new removePersonListener());
+
 
             //def lists
             fillListPessoas(projetoAtual.getPessoas());
@@ -283,7 +287,54 @@ public class InterfaceGraficaMega extends JFrame {
             }
         }
 
-        //private class
+        private class updateListener implements ActionListener{
+
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                try{
+                    indexTar = listTarefas.getSelectedIndex();
+                    String taxaTemp = textFieldTaxa.getText();
+                    double taxa = Double.parseDouble(taxaTemp);
+                    centro.projetos.get(indexProj).tarefas.get(indexTar).setTaxaExecucao(taxa);
+                }catch(NumberFormatException ex){
+                    JOptionPane.showMessageDialog(null, "O valor não é aceitável", "Valor inválido", JOptionPane.ERROR_MESSAGE);
+                }catch(NullPointerException ex){
+                    JOptionPane.showMessageDialog(null, "O campo está vazio!", "Valor inválido", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
+
+        private class costListener implements ActionListener{
+
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                indexTar = listTarefas.getSelectedIndex();
+                double custo = centro.projetos.get(indexProj).custoTotal();
+                JOptionPane.showMessageDialog(null, custo, "Custo total: ", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+
+        private class removePersonListener implements ActionListener{
+
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                indexPerson = listPessoas.getSelectedIndex();
+                centro.projetos.get(indexProj).participantes.remove(indexPerson);
+                pessoas.remove(indexPerson);
+            }
+        }
+
+        private class atributePersonListener implements ActionListener{
+
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                indexPerson = listPessoas.getSelectedIndex();
+                indexTar = listTarefas.getSelectedIndex();
+                Pessoa resp = centro.projetos.get(indexProj).participantes.get(indexPerson);
+                centro.projetos.get(indexProj).tarefas.get(indexTar).setResponsavel(resp);
+            }
+        }
+
     }
 
     private class InterfaceCriarTarefa extends JFrame implements ActionListener{
@@ -441,6 +492,7 @@ public class InterfaceGraficaMega extends JFrame {
             }
         }
     }
+
 }
 
 

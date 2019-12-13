@@ -10,7 +10,7 @@ public class Projeto {
     private Data dataInicio;
     private Data dataFim;
     private int duracaoMesesPrevista;
-    private ArrayList<Pessoa> participantes;
+    public ArrayList<Pessoa> participantes;
     public ArrayList<Tarefa> tarefas;           //TODO meti public para aceder no metodo para eliminar tarefas, se achas que nao é preciso muda
     private boolean acabado = false;
     private Scanner escolha = new Scanner(System.in);
