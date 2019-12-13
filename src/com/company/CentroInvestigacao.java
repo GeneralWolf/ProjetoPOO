@@ -20,14 +20,21 @@ public class CentroInvestigacao {
         membros.add(p);
     }
 
-    CentroInvestigacao(String nome){
-        this.nome = nome;
+    CentroInvestigacao(){
         membros = new ArrayList<Pessoa>(150);
         projetos = new ArrayList<Projeto>(150);
     }
 
     public String getName(){
         return this.nome;
+    }
+
+    public void setName(String nome){
+        this.nome = nome;
+    }
+
+    public ArrayList<Pessoa> getMembros(){
+        return membros;
     }
 
 }

@@ -7,8 +7,8 @@ package com.company;
 
 
 public class Licenciado extends Formando{
-    public Licenciado(String nome, String email, Data inicioBolsa, Data fimBolsa, Pessoa orientador){
-        super(nome,email,inicioBolsa, fimBolsa,orientador);
+    public Licenciado(String nome, String email, Data inicioBolsa, Data fimBolsa){
+        super(nome,email,inicioBolsa, fimBolsa);
     }
     @Override
     public double getCusto(){

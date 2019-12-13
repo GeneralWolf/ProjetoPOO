@@ -6,8 +6,8 @@
 package com.company;
 
 public class Mestre extends Formando {
-    public Mestre(String nome, String email, Data inicioBolsa, Data fimBolsa, Pessoa orientador){
-        super(nome,email,inicioBolsa, fimBolsa,orientador);
+    public Mestre(String nome, String email, Data inicioBolsa, Data fimBolsa){
+        super(nome,email,inicioBolsa, fimBolsa);
     }
     @Override
     public double getCusto(){

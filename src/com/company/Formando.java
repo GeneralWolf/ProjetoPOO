@@ -8,9 +8,8 @@ package com.company;
 
 public abstract class Formando extends Bolseiro{
     protected Pessoa orientador;
-    public Formando(String nome, String email, Data inicioBolsa, Data fimBolsa, Pessoa orientador){
+    public Formando(String nome, String email, Data inicioBolsa, Data fimBolsa){
     super(nome,email,inicioBolsa, fimBolsa);
-    this.orientador = orientador;
     }
     public void setOrientador(Pessoa orientador){
         this.orientador = orientador;

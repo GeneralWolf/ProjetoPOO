@@ -72,4 +72,8 @@ public abstract class Pessoa {
     public String getNome(){
         return this.nome;
     }
+
+    public String getEmail(){
+        return email;
+    }
 }
