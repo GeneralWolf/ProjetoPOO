@@ -14,7 +14,6 @@ public class CentroInvestigacao {
 
     public void adicionaProjeto(Projeto p){
         projetos.add(p);
-                System.out.println("projeto adicionado\n");
     }
 
     public void adicionaMembro(Pessoa p){

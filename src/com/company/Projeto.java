@@ -2,8 +2,6 @@ package com.company;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-//TODO adicionar funçao para remover pessoa
-
 public class Projeto {
     private String nome;
     private String acronimo;
@@ -11,7 +9,7 @@ public class Projeto {
     private Data dataFim;
     private int duracaoMesesPrevista;
     public ArrayList<Pessoa> participantes;
-    public ArrayList<Tarefa> tarefas;           //TODO meti public para aceder no metodo para eliminar tarefas, se achas que nao é preciso muda
+    public ArrayList<Tarefa> tarefas;
     private boolean acabado = false;
     private Scanner escolha = new Scanner(System.in);
 
@@ -54,26 +52,6 @@ public class Projeto {
 
     public void adicionarTarefa(Tarefa tar){
         tarefas.add(tar);
-    }
-
-    public void apagarTarefa() {
-        String opcao;   //*isto
-        int opcaoN;     //*isto
-        if (!acabado) {
-            printTarefas();
-            System.out.println("Escolha o número da tarefa a eliminar\n");  //*isto
-            opcao = escolha.nextLine(); //*isto
-            opcao = escolha.nextLine(); //*isto
-            try {
-                //TODO probs temporario já que probs vai ser implementado usando a interface grafica, mas para testing purposes está aqui**
-                opcaoN = Integer.parseInt(opcao);   //*isto
-                tarefas.remove(opcaoN);
-            } catch (NumberFormatException ex) {
-                System.out.println("Escreva um número por favor");  //*isto
-            }
-        } else {
-            System.out.println("O projeto apenas está disponível para consulta");
-        }
     }
 
     public void printTarefasNIniciadas(){
@@ -126,7 +104,6 @@ public class Projeto {
         return custo;
     }
 
-    //TODO probs ha maneira melhor de escolher a dataFim sem ser como argumento da função, mas vê-se depois
     public void finalizarProjeto(Data dataFim){
         this.acabado = true;
         this.dataFim = dataFim;

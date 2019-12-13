@@ -1,7 +1,7 @@
 package com.company;
 
 abstract public class Tarefa {
-    private String descritor;     //TODO para dar para diferenciar as tarefas e para depois ter algo para por na interface
+    private String descritor;
     protected Data dataInicio;
     protected Data dataFim;
     protected double duracaoEstimada;

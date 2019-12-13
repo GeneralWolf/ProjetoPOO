@@ -1,7 +1,5 @@
 package com.company;
 
-import org.w3c.dom.ls.LSOutput;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -48,8 +46,6 @@ public class InterfaceGraficaMega extends JFrame {
         tarefas.addElement(tar.getDescritor());
     }
 
-    private FlowLayout layout = new FlowLayout();
-
     public void fillListProj( ArrayList<Projeto> list){
         for(int i = 0; i < list.size(); i++){
             nomesProjetos.addElement(list.get(i).getNome());
@@ -67,15 +63,19 @@ public class InterfaceGraficaMega extends JFrame {
     public InterfaceGraficaMega(CentroInvestigacao ci) {
         //Detalhes do painel
         panelPrincipal = new JPanel();
-        panelPrincipal.setLayout(layout);
+        panelPrincipal.setLayout(null);
 
         //Detalhes da lista
         fillListProj(ci.projetos);
+        listScroller.setBounds(20, 20, 400, 300);
 
         //Detalhes dos botoes
         buttonCreate = new JButton("Criar Projeto");
+        buttonCreate.setBounds(440, 20, 150, 30);
         buttonSelect = new JButton("Selecionar Projeto");
+        buttonSelect.setBounds(440, 70, 150, 30);
         buttonAssociate = new JButton("Associar pessoa");
+        buttonAssociate.setBounds(440, 120, 150 ,30);
 
         buttonCreate.addActionListener(new InterfaceCriarProjeto2());
 
@@ -92,11 +92,10 @@ public class InterfaceGraficaMega extends JFrame {
 
         this.add(panelPrincipal);
         this.setTitle(centro.getName() + " - Gestor de Projetos");
-        this.setSize(1000, 800);
+        this.setSize(650, 400);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
         this.setVisible(true);
-
     }
 
     private class InterfaceCriarProjeto2 extends JFrame implements ActionListener{
@@ -153,7 +152,6 @@ public class InterfaceGraficaMega extends JFrame {
 
             buttonCriar.addActionListener(new criarListener());
 
-
             //Add everything
             panelCriar.add(labelNome);
             panelCriar.add(labelAcronimo);
@@ -170,8 +168,7 @@ public class InterfaceGraficaMega extends JFrame {
             panelCriar.add(buttonCriar);
             frame2.add(panelCriar);
         }
-        //TODO despois de criar um projeto ja nao da para aceder aos detalhes de nenhum, ver depois
-        private class criarListener implements ActionListener{      //botao criar dentro do menu para dar input da info
+        private class criarListener implements ActionListener{
             @Override
             public void actionPerformed(ActionEvent ae) {
                 try{
@@ -189,14 +186,8 @@ public class InterfaceGraficaMega extends JFrame {
 
                     retTemp = new Projeto(nome, acronimo, new Data(dia, mes, ano), duracao);
                     centro.adicionaProjeto(retTemp);
-                    //projeto = retTemp;
                     fillSingleProj(retTemp);
-                    listProjetos = new JList<>(nomesProjetos);
-                    listScroller = new JScrollPane(listProjetos);
-                    panelPrincipal.add(listScroller);
-                    listScroller.setPreferredSize(new Dimension(700, 600));
                     frame2.setVisible(false);
-
 
                 }catch(NumberFormatException ex){
                     JOptionPane.showMessageDialog(null, "Um dos valores numéricos inseridos não é aceitável!", "Valor inválido", JOptionPane.ERROR_MESSAGE);
@@ -253,7 +244,7 @@ public class InterfaceGraficaMega extends JFrame {
             buttonTaxa.addActionListener(new updateListener());
             buttonCusto.addActionListener(new costListener());
             buttonRemovePessoa.addActionListener(new removePersonListener());
-
+            buttonAtribuir.addActionListener(new atributePersonListener());
 
             //def lists
             fillListPessoas(projetoAtual.getPessoas());
@@ -494,24 +485,5 @@ public class InterfaceGraficaMega extends JFrame {
     }
 
 }
-
-
-
-
-/*
-        public InterfaceGraficaTarefas(){
-
-            buttonCriar.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent actionEvent) {
-                    InterfaceCriarTarefa frame4 = new InterfaceCriarTarefa(projetoAtual);
-                    frame4.setTitle("Criar Tarefa");
-                    frame4.setSize(500, 320);
-                    frame4.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-                    frame4.setResizable(false);
-                    frame4.setVisible(true);
-                }
-            });
- */
 
 
