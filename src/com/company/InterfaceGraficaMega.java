@@ -13,6 +13,8 @@ public class InterfaceGraficaMega extends JFrame {
     protected JButton buttonCreate, buttonSelect, buttonAssociate;
     protected CentroInvestigacao centro;
     protected Projeto projetoAtual;
+    protected int indexProj, indexTar;
+
     protected DefaultListModel<String> nomesProjetos = new DefaultListModel<String>();
     protected JList<String> listProjetos = new JList<>(nomesProjetos);
     protected JScrollPane listScroller = new JScrollPane(listProjetos);
@@ -205,8 +207,6 @@ public class InterfaceGraficaMega extends JFrame {
 
     private class InterfaceGraficaTarefas extends JFrame implements ActionListener{
 
-        private int indexProj, indexTar;
-
         private JPanel panelTar;
         private JButton buttonCriar, buttonElim, buttonAtribuir, buttonTaxa, buttonCusto, buttonRemovePessoa;
         private JTextField textFieldTaxa;
@@ -249,6 +249,7 @@ public class InterfaceGraficaMega extends JFrame {
             buttonRemovePessoa.setBounds(420, 320, 250, 30);
 
             buttonElim.addActionListener(new elimListener());
+            buttonCriar.addActionListener(new InterfaceCriarTarefa());
 
             //def lists
             fillListPessoas(projetoAtual.getPessoas());
@@ -291,11 +292,21 @@ public class InterfaceGraficaMega extends JFrame {
         private JTextField textFieldDescritor, textFieldDia, textFieldMes, textFieldAno, textFieldDuracao;
         private JButton buttonCriarDesenvolvimento, buttonCriarDesign, buttonCriarDocumentacao;
         private JLabel labelDescritor, labelDia, labelMes, labelAno, labelDuracao;
+        private JFrame frameCriar;
 
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
+
+            frameCriar = new JFrame();
+            frameCriar.setTitle("Gestão do projeto" + projetoAtual.getNome());
+            frameCriar.setSize(700, 700);
+            frameCriar.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+            frameCriar.setResizable(false);
+            frameCriar.setVisible(true);
+
             panelCriar = new JPanel();
             panelCriar.setLayout(null);
+
 
             //labels
             labelDescritor = new JLabel("Descrição:");
@@ -329,6 +340,10 @@ public class InterfaceGraficaMega extends JFrame {
             buttonCriarDocumentacao = new JButton("Documentação");
             buttonCriarDocumentacao.setBounds(330, 220, 140, 30);
 
+            buttonCriarDesenvolvimento.addActionListener(new DesenListener());
+            buttonCriarDesign.addActionListener(new DesigListener());
+            buttonCriarDocumentacao.addActionListener(new DocListener());
+
             panelCriar.add(textFieldDescritor);
             panelCriar.add(textFieldDia);
             panelCriar.add(textFieldMes);
@@ -342,8 +357,7 @@ public class InterfaceGraficaMega extends JFrame {
             panelCriar.add(buttonCriarDesenvolvimento);
             panelCriar.add(buttonCriarDesign);
             panelCriar.add(buttonCriarDocumentacao);
-
-            this.add(panelCriar);
+            frameCriar.add(panelCriar);
         }
 
         private class DesenListener implements ActionListener{
@@ -365,14 +379,69 @@ public class InterfaceGraficaMega extends JFrame {
                     tarTemp = new Desenvolvimento(descricao, new Data(dia, mes, ano), duracao);
 
                     projetoAtual.adicionarTarefa(tarTemp);
+                    centro.projetos.get(indexProj).tarefas.add(tarTemp);
                     fillSingleTarefa(tarTemp);
                 }catch(NumberFormatException ex){
                     JOptionPane.showMessageDialog(null, "Um dos valores numéricos inseridos não é aceitável!", "Valor inválido", JOptionPane.ERROR_MESSAGE);
                 }
             }
+        }
+
+        private class DesigListener implements ActionListener{
+
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                try{
+                    Tarefa tarTemp;
+                    String descricao = textFieldDescritor.getText();
+                    String diaTemp = textFieldDia.getText();
+                    int dia = Integer.parseInt(diaTemp);
+                    String mesTemp = textFieldMes.getText();
+                    int mes = Integer.parseInt(mesTemp);
+                    String anoTemp = textFieldAno.getText();
+                    int ano = Integer.parseInt(anoTemp);
+                    String duracaoTemp = textFieldDuracao.getText();
+                    int duracao = Integer.parseInt(duracaoTemp);
+
+                    tarTemp = new Design(descricao, new Data(dia, mes, ano), duracao);
+
+                    projetoAtual.adicionarTarefa(tarTemp);
+                    centro.projetos.get(indexProj).tarefas.add(tarTemp);
+                    fillSingleTarefa(tarTemp);
+                }catch(NumberFormatException ex){
+                    JOptionPane.showMessageDialog(null, "Um dos valores numéricos inseridos não é aceitável!", "Valor inválido", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
+
+        private class DocListener implements ActionListener{
+
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                try{
+                    Tarefa tarTemp;
+                    String descricao = textFieldDescritor.getText();
+                    String diaTemp = textFieldDia.getText();
+                    int dia = Integer.parseInt(diaTemp);
+                    String mesTemp = textFieldMes.getText();
+                    int mes = Integer.parseInt(mesTemp);
+                    String anoTemp = textFieldAno.getText();
+                    int ano = Integer.parseInt(anoTemp);
+                    String duracaoTemp = textFieldDuracao.getText();
+                    int duracao = Integer.parseInt(duracaoTemp);
+
+                    tarTemp = new Documentacao(descricao, new Data(dia, mes, ano), duracao);
+
+                    projetoAtual.adicionarTarefa(tarTemp);
+                    centro.projetos.get(indexProj).tarefas.add(tarTemp);
+                    fillSingleTarefa(tarTemp);
+                }catch(NumberFormatException ex){
+                    JOptionPane.showMessageDialog(null, "Um dos valores numéricos inseridos não é aceitável!", "Valor inválido", JOptionPane.ERROR_MESSAGE);
+                }
             }
         }
     }
+}
 
 
 
