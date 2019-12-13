@@ -55,18 +55,13 @@ public class InterfaceCriarTarefa extends InterfaceGraficaTarefas {
                 try{
                     Tarefa tarTemp;
                     String descricao = textFieldDescritor.getText();
-                            System.out.println(descricao);
                     String diaTemp = textFieldDia.getText();
-                            System.out.println(diaTemp);
                     int dia = Integer.parseInt(diaTemp);
                     String mesTemp = textFieldMes.getText();
-                            System.out.println(mesTemp);
                     int mes = Integer.parseInt(mesTemp);
                     String anoTemp = textFieldAno.getText();
-                            System.out.println(anoTemp);
                     int ano = Integer.parseInt(anoTemp);
                     String duracaoTemp = textFieldDuracao.getText();
-                            System.out.println(duracaoTemp);
                     int duracao = Integer.parseInt(duracaoTemp);
 
                     tarTemp = new Desenvolvimento(descricao, new Data(dia, mes, ano), duracao);

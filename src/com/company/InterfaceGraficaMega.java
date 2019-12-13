@@ -17,6 +17,35 @@ public class InterfaceGraficaMega extends JFrame {
     protected JList<String> listProjetos = new JList<>(nomesProjetos);
     protected JScrollPane listScroller = new JScrollPane(listProjetos);
 
+    private DefaultListModel<String> tarefas = new DefaultListModel<String>();
+    private JList<String> listTarefas = new JList<>(tarefas);
+    private JScrollPane listScroller1 = new JScrollPane(listTarefas);
+
+    private DefaultListModel<String> pessoas = new DefaultListModel<String>();
+    private JList<String> listPessoas = new JList<>(pessoas);
+    private JScrollPane listScroller2 = new JScrollPane(listPessoas);
+
+
+    public void fillListPessoas(ArrayList<Pessoa> list){
+        for(int i = 0; i < list.size(); i++){
+            pessoas.addElement(list.get(i).getNome());
+        }
+    }
+
+    public void fillSinglePess(Pessoa pess){
+        pessoas.addElement(pess.getNome());
+    }
+
+    public void fillListTarefas(ArrayList<Tarefa> list){
+        for(int i = 0; i < list.size(); i++){
+            tarefas.addElement(list.get(i).getDescritor());
+        }
+    }
+
+    public void fillSingleTarefa(Tarefa tar){
+        tarefas.addElement(tar.getDescritor());
+    }
+
     private FlowLayout layout = new FlowLayout();
 
     public void fillListProj( ArrayList<Projeto> list){
@@ -46,14 +75,9 @@ public class InterfaceGraficaMega extends JFrame {
         buttonSelect = new JButton("Selecionar Projeto");
         buttonAssociate = new JButton("Associar pessoa");
 
-        //projetoAtual = centro.projetos.get(listProjetos.getSelectedIndex() -1);
-
         buttonCreate.addActionListener(new InterfaceCriarProjeto2());
 
         buttonSelect.addActionListener(new InterfaceGraficaTarefas());
-
-        //centro.projetos.get(listProjetos.getSelectedIndex() -1)
-
 
         centro = ci;
 
@@ -144,6 +168,7 @@ public class InterfaceGraficaMega extends JFrame {
             panelCriar.add(buttonCriar);
             frame2.add(panelCriar);
         }
+        //TODO despois de criar um projeto ja nao da para aceder aos detalhes de nenhum, ver depois
         private class criarListener implements ActionListener{      //botao criar dentro do menu para dar input da info
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -176,65 +201,26 @@ public class InterfaceGraficaMega extends JFrame {
                 }
             }
         }
-
-        //TODO dont know if needed
-        class selecionarListener implements ActionListener{
-
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                new InterfaceGraficaTarefas();
-            }
-        }
-
     }
 
+    private class InterfaceGraficaTarefas extends JFrame implements ActionListener{
 
-
-
-    public class InterfaceGraficaTarefas extends JFrame implements ActionListener{
+        private int indexProj, indexTar;
 
         private JPanel panelTar;
         private JButton buttonCriar, buttonElim, buttonAtribuir, buttonTaxa, buttonCusto, buttonRemovePessoa;
         private JTextField textFieldTaxa;
         private JFrame frameTar;
 
-        private DefaultListModel<String> tarefas = new DefaultListModel<String>();
-        private JList<String> listTarefas = new JList<>(tarefas);
-        private JScrollPane listScroller1 = new JScrollPane(listTarefas);
-
-        private DefaultListModel<String> pessoas = new DefaultListModel<String>();
-        private JList<String> listPessoas = new JList<>(pessoas);
-        private JScrollPane listScroller2 = new JScrollPane(listPessoas);
-
-        public void fillListPessoas(ArrayList<Pessoa> list){
-            for(int i = 0; i < list.size(); i++){
-                pessoas.addElement(list.get(i).getNome());
-            }
-        }
-
-        public void fillSinglePess(Pessoa pess){
-            pessoas.addElement(pess.getNome());
-        }
-
-        public void fillListTarefas(ArrayList<Tarefa> list){
-            for(int i = 0; i < list.size(); i++){
-                tarefas.addElement(list.get(i).getDescritor());
-            }
-        }
-
-        public void fillSingleTarefa(Tarefa tar){
-            pessoas.addElement(tar.getDescritor());
-        }
-
-
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
 
             tarefas.clear();
-            projetoAtual = centro.projetos.get(listProjetos.getSelectedIndex());
+            indexProj = listProjetos.getSelectedIndex();
+            projetoAtual = centro.projetos.get(indexProj);
 
             frameTar = new JFrame();
-            frameTar.setTitle("Criar Projeto");
+            frameTar.setTitle("Gestão do projeto" + projetoAtual.getNome());
             frameTar.setSize(700, 700);
             frameTar.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
             frameTar.setResizable(false);
@@ -262,6 +248,7 @@ public class InterfaceGraficaMega extends JFrame {
             buttonRemovePessoa = new JButton("Remover uma pessoa do projeto");
             buttonRemovePessoa.setBounds(420, 320, 250, 30);
 
+            buttonElim.addActionListener(new elimListener());
 
             //def lists
             fillListPessoas(projetoAtual.getPessoas());
@@ -286,7 +273,110 @@ public class InterfaceGraficaMega extends JFrame {
             frameTar.add(panelTar);
         }
 
-        //TODO em comentario porque usa projetoAtual e isso ta broken
+        private class elimListener implements ActionListener{
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                indexTar = listTarefas.getSelectedIndex();
+                centro.projetos.get(indexProj).tarefas.remove(indexTar);
+                tarefas.remove(indexTar);
+            }
+        }
+
+        //private class
+    }
+
+    private class InterfaceCriarTarefa extends JFrame implements ActionListener{
+
+        private JPanel panelCriar;
+        private JTextField textFieldDescritor, textFieldDia, textFieldMes, textFieldAno, textFieldDuracao;
+        private JButton buttonCriarDesenvolvimento, buttonCriarDesign, buttonCriarDocumentacao;
+        private JLabel labelDescritor, labelDia, labelMes, labelAno, labelDuracao;
+
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+            panelCriar = new JPanel();
+            panelCriar.setLayout(null);
+
+            //labels
+            labelDescritor = new JLabel("Descrição:");
+            labelDescritor.setBounds(20,20,100,20);
+            labelDia = new JLabel("Dia:");
+            labelDia.setBounds(20, 60, 100, 20);
+            labelMes = new JLabel("Mês:");
+            labelMes.setBounds(20, 100, 100, 20);
+            labelAno = new JLabel("Ano:");
+            labelAno.setBounds(20, 140, 100, 20);
+            labelDuracao = new JLabel("Duração prevista:");
+            labelDuracao.setBounds(20, 180, 100, 20);
+
+            //text fields
+            textFieldDescritor = new JTextField();
+            textFieldDescritor.setBounds(150, 20, 300, 20);
+            textFieldDia = new JTextField();
+            textFieldDia.setBounds(150, 60, 300, 20);
+            textFieldMes = new JTextField();
+            textFieldMes.setBounds(150, 100, 300, 20);
+            textFieldAno = new JTextField();
+            textFieldAno.setBounds(150, 140, 300, 20);
+            textFieldDuracao = new JTextField();
+            textFieldDuracao.setBounds(150, 180, 300, 20);
+
+            //buttons
+            buttonCriarDesenvolvimento = new JButton("Desenvolvimento");
+            buttonCriarDesenvolvimento.setBounds(20, 220, 140, 30);
+            buttonCriarDesign = new JButton("Design");
+            buttonCriarDesign.setBounds(175, 220, 140, 30);
+            buttonCriarDocumentacao = new JButton("Documentação");
+            buttonCriarDocumentacao.setBounds(330, 220, 140, 30);
+
+            panelCriar.add(textFieldDescritor);
+            panelCriar.add(textFieldDia);
+            panelCriar.add(textFieldMes);
+            panelCriar.add(textFieldAno);
+            panelCriar.add(textFieldDuracao);
+            panelCriar.add(labelDescritor);
+            panelCriar.add(labelDia);
+            panelCriar.add(labelMes);
+            panelCriar.add(labelAno);
+            panelCriar.add(labelDuracao);
+            panelCriar.add(buttonCriarDesenvolvimento);
+            panelCriar.add(buttonCriarDesign);
+            panelCriar.add(buttonCriarDocumentacao);
+
+            this.add(panelCriar);
+        }
+
+        private class DesenListener implements ActionListener{
+
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                try{
+                    Tarefa tarTemp;
+                    String descricao = textFieldDescritor.getText();
+                    String diaTemp = textFieldDia.getText();
+                    int dia = Integer.parseInt(diaTemp);
+                    String mesTemp = textFieldMes.getText();
+                    int mes = Integer.parseInt(mesTemp);
+                    String anoTemp = textFieldAno.getText();
+                    int ano = Integer.parseInt(anoTemp);
+                    String duracaoTemp = textFieldDuracao.getText();
+                    int duracao = Integer.parseInt(duracaoTemp);
+
+                    tarTemp = new Desenvolvimento(descricao, new Data(dia, mes, ano), duracao);
+
+                    projetoAtual.adicionarTarefa(tarTemp);
+                    fillSingleTarefa(tarTemp);
+                }catch(NumberFormatException ex){
+                    JOptionPane.showMessageDialog(null, "Um dos valores numéricos inseridos não é aceitável!", "Valor inválido", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+            }
+        }
+    }
+
+
+
+
 /*
         public InterfaceGraficaTarefas(){
 
@@ -301,18 +391,6 @@ public class InterfaceGraficaMega extends JFrame {
                     frame4.setVisible(true);
                 }
             });
-
-
-
-        }
-
-*/
-
-    }
-
-
-}
-
-
+ */
 
 
